@@ -87,12 +87,12 @@ class PlayScene extends BaseScene {
             this.thrust1.setRotation(this.red.rotation);
             this.thrust2.setRotation(this.red.rotation);
             this.turnThrustRight.setRotation(this.red.rotation - 1.5807).setVisible(true).setX(this.red.body.x+16).setY(this.red.body.y+16)
-            this.turnThrustLeft.setRotation(this.red.rotation + 1.5807)
+            this.turnThrustLeft.setRotation(this.red.rotation + 1.5807).setVisible(false).setX(this.red.body.x+16).setY(this.red.body.y+16)
           } else if (this.cursors.right.isDown) {
             this.red.setAngularVelocity(300);
             this.thrust1.setRotation(this.red.rotation);
             this.thrust2.setRotation(this.red.rotation);
-            this.turnThrustRight.setRotation(this.red.rotation - 1.5807)
+            this.turnThrustRight.setRotation(this.red.rotation - 1.5807).setVisible(false).setX(this.red.body.x+16).setY(this.red.body.y+16)
             this.turnThrustLeft.setRotation(this.red.rotation + 1.5807).setVisible(true).setX(this.red.body.x+16).setY(this.red.body.y+16)
           } else {
              this.red.setAngularVelocity(0);
