@@ -14,6 +14,9 @@ class MenuScene extends BaseScene {
 
     create() {
         super.create();
+        this.add.image(this.config.width/2, this.config.height * .33, 'logo')
+            .setOrigin(.5)
+            .setScale(2)
         this.createMenu(this.menu, this.setupMenuEvents.bind(this));
         this.music = this.sound.add('backgroundMusic');
         this.music.loop = true;
@@ -35,6 +38,7 @@ class MenuScene extends BaseScene {
 
         textGO.on('pointerup', () => {
             menuItem.scene && this.scene.start(menuItem.scene)
+            this.music.stop()
 
             if (menuItem.text == 'Exit') {
                 this.game.destroy(true);

@@ -3,16 +3,18 @@ import MenuScene from './scenes/MenuScene';
 import PreloadScene from './scenes/PreloadScene';
 import PlayScene from './scenes/PlayScene';
 
-const WIDTH = 800;
-const HEIGHT = 600;
+const WIDTH = 1080;
+const HEIGHT = 800;
 const RED_POSITION = { x: WIDTH * 0.1, y: HEIGHT / 2 }
 const BLUE_POSITION = { x: WIDTH * 0.9, y: HEIGHT / 2 }
+const BULLET_SPEED = 250;
 
 const SHARED_CONFIG = {
   width: WIDTH,
   height: HEIGHT,
   redStartPosition: RED_POSITION,
-  blueStartPosition: BLUE_POSITION
+  blueStartPosition: BLUE_POSITION,
+  bulletSpeed: BULLET_SPEED
 }
 
 const Scenes = [PreloadScene, MenuScene, PlayScene];
@@ -27,6 +29,7 @@ const config = {
     default: 'arcade',
     arcade: {
       debug: false,
+      gravity: {x: 0, y: 0}
     }
   },
   scene: initScenes()

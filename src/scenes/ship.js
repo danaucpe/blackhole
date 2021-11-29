@@ -1,26 +1,33 @@
-class Ship extends Phaser.GameObjects.Sprite {
-    constructor(scene, x, y, texture) {
-        super(scene, x, y, texture);
-        this.scene = scene;
-        this.scene.add.existing(this);
-        this.setInteractive();
-        this.cursors = this.input.keyboard.createCursorKeys();
+import Phaser from 'phaser';
+
+class Ship extends Phaser.Physics.Arcade.Sprite
+{
+    constructor (scene, x, y, config)
+    {
+        super(scene, x, y, 'blaster1');
+        this.config = config;
     }
 
-    update() {
-        if (this.cursors.up.isDown) {    
-            this.physics.velocityFromRotation(this.red.rotation - 1.5807, 150, this.red.body.acceleration);
-          } else {
-            this.red.setAcceleration(0);
-          }
-          
-          if (this.cursors.left.isDown) {
-            this.red.setAngularVelocity(-300);
-          } else if (this.cursors.right.isDown) {
-            this.red.setAngularVelocity(300);
-          } else {
-             this.red.setAngularVelocity(0);
-          }
+    fire (x, y, velVector)
+    {
+        this.body.reset(x, y);
+
+        this.setActive(true);
+        this.setVisible(true);
+
+        this.setVelocity(velVector);
     }
 
+    preUpdate (time, delta)
+    {
+        //super.preUpdate(time, delta);
+        if (this.x >= this.config.width || this.x < 0 || this.y >= this.config.height || this.y < 0)
+        {
+            debugger
+            this.setActive(false);
+            this.setVisible(false);
+        }
+    }
 }
+
+export default Ship;

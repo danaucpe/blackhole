@@ -1,4 +1,5 @@
 import BaseScene from './BaseScene';
+import Bullets from './Bullets';
 
 const VELOCITY = 200;
 
@@ -9,6 +10,9 @@ class PlayScene extends BaseScene {
         this.red = null;
         this.redcenter = null;
         this.blue = null;
+        this.thrusterSound = null;
+        this.blasterSound = null;
+        this.bullets = null;
 
         this.thrustVelocity = 100;
         this.isPaused = false;
@@ -18,8 +22,11 @@ class PlayScene extends BaseScene {
         super.create();
         this.createRed();
         this.createBlue();
+        this.createAsteroid();
         this.createColliders();
         this.handleInputs();
+
+        this.bullets = new Bullets(this);
     }
 
     update() {
@@ -33,6 +40,8 @@ class PlayScene extends BaseScene {
             .setScale(1)
         this.red.setCollideWorldBounds(true)
         this.redcenter = this.red.getCenter();
+        this.thrusterSound = this.sound.add('thrusterSound');
+        this.blasterSound = this.sound.add('blasterSound');
             
         this.thrust1 = this.add.image(this.red.body.position.x+16, this.red.body.position.y+16, 'thrust1')
             .setVisible(true)
@@ -62,13 +71,20 @@ class PlayScene extends BaseScene {
         this.blue.setCollideWorldBounds(true)
     }
 
+    createAsteroid() {
+        this.asteroid = this.physics.add.sprite(this.config.width/2, this.config.height/2, 'asteroid')
+            .setOrigin(.5,.5)
+            .setScale(2)
+        this.asteroid.setCollideWorldBounds(true)
+    }
+
     createColliders() {
         this.physics.add.collider(this.red, this.blue, this.gameOver, null, this);
     }
 
     handleInputs() {       
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.input.keyboard.on('keydown_W', this.thrustRed, this);
+        this.input.keyboard.on('keydown_W', this.fireBlaster, this);
     }
 
     updateShipPosition() {
@@ -76,10 +92,17 @@ class PlayScene extends BaseScene {
             this.physics.velocityFromRotation(this.red.rotation - 1.5807, 150, this.red.body.acceleration);
             this.thrust1.setVisible(true).setX(this.red.body.x+16).setY(this.red.body.y+16)
             this.thrust2.setVisible(true).setX(this.red.body.x+16).setY(this.red.body.y+16)
+            if (!this.thrusterSound.isPlaying)
+            {
+                this.thrusterSound.play();
+                this.thrusterSound.volume = 0.1
+                this.thrusterSound.loop = true;
+            }
           } else {
             this.red.setAcceleration(0);
             this.thrust1.setVisible(false);
             this.thrust2.setVisible(false);
+            this.thrusterSound.stop()
           }
           
           if (this.cursors.left.isDown) {
@@ -100,7 +123,7 @@ class PlayScene extends BaseScene {
              this.turnThrustLeft.setVisible(false)
           }
     }
-    
+
     checkGameStatus() {
         /*if (this.red.body.x >= this.config.width - this.red.width) {
             this.red.body.velocity.x = -VELOCITY;
@@ -116,14 +139,17 @@ class PlayScene extends BaseScene {
     }
 
     gameOver() {
-        if (!this.gameOverFlag) {
+        console.log('test')
+        /*if (!this.gameOverFlag) {
             this.gameOverFlag = true;
             this.physics.pause();
-        }
+        }*/
     }
 
-    thrustRed() {
-        this.red.body.velocity.x += this.thrustVelocity;
+    fireBlaster() {
+        this.blasterSound.play()
+        this.shipVelocityPlusSpeed = this.physics.velocityFromRotation(this.red.rotation - 1.5807, this.config.bulletSpeed)
+        this.bullets.fireBullet(this.red.body.x, this.red.body.y, this.shipVelocityPlusSpeed)
     }
 }
 
