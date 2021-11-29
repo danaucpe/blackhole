@@ -10,6 +10,10 @@ class PreloadScene extends Phaser.Scene {
         this.load.image('stars', 'assets/stars.png');
         this.load.image('blue', 'assets/blueship.png');
         this.load.image('red', 'assets/redship.png');
+        this.load.image('thrust1', 'assets/Thrust-1.png');
+        this.load.image('blaster1', 'assets/Blaster-1.png');
+
+        this.load.audio('backgroundMusic', 'assets/space-music.wav');
     }
 
     create() {

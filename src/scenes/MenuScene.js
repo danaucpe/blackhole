@@ -9,11 +9,16 @@ class MenuScene extends BaseScene {
             {scene: 'PlayScene', text: 'Play'},
             {scene: null, text: 'Exit'},
         ]
+        this.music = null;
     }
 
     create() {
         super.create();
         this.createMenu(this.menu, this.setupMenuEvents.bind(this));
+        this.music = this.sound.add('backgroundMusic');
+        this.music.loop = true;
+        this.music.play();
+        this.music.volume = .1;
     }
 
     setupMenuEvents(menuItem) {
