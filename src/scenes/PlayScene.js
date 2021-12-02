@@ -27,6 +27,10 @@ class PlayScene extends BaseScene {
         this.handleInputs();
 
         this.bullets = new Bullets(this);
+        this.music = this.sound.add('gameloop');
+        this.music.loop = true;
+        this.music.play();
+        this.music.volume = .3;
     }
 
     update() {

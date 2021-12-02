@@ -18,6 +18,7 @@ class PreloadScene extends Phaser.Scene {
         this.load.audio('backgroundMusic', 'assets/space-music.wav');
         this.load.audio('blasterSound', 'assets/Blaster1.wav');
         this.load.audio('thrusterSound', 'assets/Thruster1.wav');
+        this.load.audio('gameloop', 'assets/gameloop.wav');
     }
 
     create() {
