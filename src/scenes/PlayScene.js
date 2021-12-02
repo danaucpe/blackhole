@@ -46,6 +46,7 @@ class PlayScene extends BaseScene {
         this.redcenter = this.red.getCenter();
         this.thrusterSound = this.sound.add('thrusterSound');
         this.blasterSound = this.sound.add('blasterSound');
+        this.thrusterBack = this.sound.add('thrusterBack')
             
         this.thrust1 = this.add.image(this.red.body.position.x+16, this.red.body.position.y+16, 'thrust1')
             .setVisible(true)
@@ -115,16 +116,29 @@ class PlayScene extends BaseScene {
             this.thrust2.setRotation(this.red.rotation);
             this.turnThrustRight.setRotation(this.red.rotation - 1.5807).setVisible(true).setX(this.red.body.x+16).setY(this.red.body.y+16)
             this.turnThrustLeft.setRotation(this.red.rotation + 1.5807).setVisible(false).setX(this.red.body.x+16).setY(this.red.body.y+16)
+            if (!this.thrusterBack.isPlaying)
+            {
+                this.thrusterBack.play();
+                this.thrusterBack.volume = 0.05
+                this.thrusterBack.loop = true;
+            }
           } else if (this.cursors.right.isDown) {
             this.red.setAngularVelocity(300);
             this.thrust1.setRotation(this.red.rotation);
             this.thrust2.setRotation(this.red.rotation);
             this.turnThrustRight.setRotation(this.red.rotation - 1.5807).setVisible(false).setX(this.red.body.x+16).setY(this.red.body.y+16)
             this.turnThrustLeft.setRotation(this.red.rotation + 1.5807).setVisible(true).setX(this.red.body.x+16).setY(this.red.body.y+16)
+            if (!this.thrusterBack.isPlaying)
+            {
+                this.thrusterBack.play();
+                this.thrusterBack.volume = 0.05
+                this.thrusterBack.loop = true;
+            }
           } else {
              this.red.setAngularVelocity(0);
              this.turnThrustRight.setVisible(false);
-             this.turnThrustLeft.setVisible(false)
+             this.turnThrustLeft.setVisible(false);
+             this.thrusterBack.stop();
           }
     }
 
