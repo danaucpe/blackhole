@@ -15,11 +15,11 @@ class PreloadScene extends Phaser.Scene {
         this.load.image('asteroid', 'assets/asteroid.png');
         this.load.image('logo', 'assets/logo.png')
 
-        this.load.audio('backgroundMusic', 'assets/space-music.wav');
+        this.load.audio('inGameMusic', 'assets/InGameMusic.ogg');
         this.load.audio('blasterSound', 'assets/Blaster1.wav');
-        this.load.audio('thrusterSound', 'assets/Thruster1.wav');
-        this.load.audio('thrusterBack', 'assets/Thruster-Back.wav');
-        this.load.audio('gameloop', 'assets/gameloop.wav');
+        this.load.audio('thrusterSound', 'assets/Thruster-Side.ogg');
+        this.load.audio('thrusterBack', 'assets/Thruster-Back.ogg');
+        this.load.audio('introMusic', 'assets/IntroMusic.ogg');
     }
 
     create() {

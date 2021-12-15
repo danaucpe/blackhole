@@ -27,10 +27,10 @@ class PlayScene extends BaseScene {
         this.handleInputs();
 
         this.bullets = new Bullets(this);
-        this.music = this.sound.add('gameloop');
+        this.music = this.sound.add('inGameMusic');
         this.music.loop = true;
         this.music.play();
-        this.music.volume = .3;
+        this.music.volume = .1;
     }
 
     update() {
@@ -42,7 +42,6 @@ class PlayScene extends BaseScene {
         this.red = this.physics.add.sprite(this.config.redStartPosition.x, this.config.redStartPosition.y, 'red')
             .setOrigin(.5)
             .setScale(1)
-        this.red.setCollideWorldBounds(true)
         this.redcenter = this.red.getCenter();
         this.thrusterSound = this.sound.add('thrusterSound');
         this.blasterSound = this.sound.add('blasterSound');
@@ -73,18 +72,18 @@ class PlayScene extends BaseScene {
         this.blue = this.physics.add.sprite(this.config.blueStartPosition.x, this.config.blueStartPosition.y, 'blue')
             .setOrigin(.5,.5)
             .setScale(1)
-        this.blue.setCollideWorldBounds(true)
     }
 
     createAsteroid() {
         this.asteroid = this.physics.add.sprite(this.config.width/2, this.config.height/2, 'asteroid')
             .setOrigin(.5,.5)
             .setScale(2)
-        this.asteroid.setCollideWorldBounds(true)
     }
 
     createColliders() {
         this.physics.add.collider(this.red, this.blue, this.gameOver, null, this);
+        this.physics.add.collider(this.red, this.asteroid, this.gameOver, null, this);
+        this.physics.add.collider(this.blue, this.asteroid, this.gameOver, null, this);
     }
 
     handleInputs() {       
@@ -143,25 +142,33 @@ class PlayScene extends BaseScene {
     }
 
     checkGameStatus() {
-        /*if (this.red.body.x >= this.config.width - this.red.width) {
-            this.red.body.velocity.x = -VELOCITY;
-          }
+        this.checkbodybound(this.red)  
+        this.checkbodybound(this.blue)  
+        this.checkbodybound(this.asteroid)
+    }
+
+    checkbodybound( phys_sprite ) {
+        const reduce_factor = -0.5
+
+        if (phys_sprite.body.x <= 0) {
+            phys_sprite.body.velocity.x = phys_sprite.body.velocity.x * reduce_factor;
+            phys_sprite.body.x = 1
+        } else if (phys_sprite.body.x >= this.config.width - phys_sprite.width) {
+            phys_sprite.body.velocity.x = phys_sprite.body.velocity.x * reduce_factor;
+            phys_sprite.body.x = this.config.width - phys_sprite.width - 1
+        }
         
-          if (this.red.body.x <= 0) {
-            this.red.body.velocity.x = VELOCITY;
-          }*/
-        
-          //if (this.red.getBounds().bottom >= this.config.height || this.red.body.y <= 0) {
-          //  this.gameOver();
-          //}
+        if (phys_sprite.body.y <= 0) {
+            phys_sprite.body.velocity.y = phys_sprite.body.velocity.y * reduce_factor;
+            phys_sprite.body.y = 1
+        } else if (phys_sprite.body.y >= this.config.height - phys_sprite.height) {
+            phys_sprite.body.velocity.y = phys_sprite.body.velocity.y * reduce_factor;
+            phys_sprite.body.y = this.config.height - phys_sprite.height - 1 
+        }
     }
 
     gameOver() {
         console.log('test')
-        /*if (!this.gameOverFlag) {
-            this.gameOverFlag = true;
-            this.physics.pause();
-        }*/
     }
 
     fireBlaster() {

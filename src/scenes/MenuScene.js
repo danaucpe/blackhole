@@ -18,7 +18,7 @@ class MenuScene extends BaseScene {
             .setOrigin(.5)
             .setScale(2)
         this.createMenu(this.menu, this.setupMenuEvents.bind(this));
-        this.music = this.sound.add('backgroundMusic');
+        this.music = this.sound.add('introMusic');
         this.music.loop = true;
         this.music.play();
         this.music.volume = .1;
