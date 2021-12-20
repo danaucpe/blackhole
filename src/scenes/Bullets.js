@@ -14,7 +14,7 @@ class Bullet extends Phaser.Physics.Arcade.Sprite
         this.setActive(true);
         this.setVisible(true);
 
-        this.setVelocity(velVector.x, velVector.y);
+        this.setVelocity(velVector.x*2.5, velVector.y*2.5);
     }
 
     preUpdate (time, delta)
@@ -36,7 +36,7 @@ class Bullets extends Phaser.Physics.Arcade.Group
         super(scene.physics.world, scene);
 
         this.createMultiple({
-            frameQuantity: 5,
+            frameQuantity: 10,
             key: 'blaster1',
             active: false,
             visible: false,

@@ -11,7 +11,7 @@ class PreloadScene extends Phaser.Scene {
         this.load.image('blue', 'assets/blueship.png');
         this.load.image('red', 'assets/redship.png');
         this.load.image('thrust1', 'assets/Thrust-1.png');
-        this.load.image('blaster1', 'assets/Blaster-1.png');
+        this.load.image('blaster1', 'assets/blast-ball.png');
         this.load.image('asteroid', 'assets/asteroid.png');
         this.load.image('logo', 'assets/logo.png')
 

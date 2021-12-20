@@ -14,7 +14,7 @@ class PlayScene extends BaseScene {
         this.blasterSound = null;
         this.bullets = null;
 
-        this.thrustVelocity = 100;
+        this.thrustVelocity = 500;
         this.isPaused = false;
     }
 
@@ -93,7 +93,7 @@ class PlayScene extends BaseScene {
 
     updateShipPosition() {
         if (this.cursors.up.isDown) {    
-            this.physics.velocityFromRotation(this.red.rotation - 1.5807, 150, this.red.body.acceleration);
+            this.physics.velocityFromRotation(this.red.rotation - 1.5807, this.thrustVelocity, this.red.body.acceleration);
             this.thrust1.setVisible(true).setX(this.red.body.x+16).setY(this.red.body.y+16)
             this.thrust2.setVisible(true).setX(this.red.body.x+16).setY(this.red.body.y+16)
             if (!this.thrusterSound.isPlaying)
@@ -173,8 +173,9 @@ class PlayScene extends BaseScene {
 
     fireBlaster() {
         this.blasterSound.play()
+        this.blasterSound.volume = 0.3
         this.shipVelocityPlusSpeed = this.physics.velocityFromRotation(this.red.rotation - 1.5807, this.config.bulletSpeed)
-        this.bullets.fireBullet(this.red.body.x, this.red.body.y, this.shipVelocityPlusSpeed)
+        this.bullets.fireBullet(this.red.body.center.x, this.red.body.center.y, this.shipVelocityPlusSpeed)
     }
 }
 
