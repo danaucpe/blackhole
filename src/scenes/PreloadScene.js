@@ -13,7 +13,7 @@ class PreloadScene extends Phaser.Scene {
         this.load.image('thrust1', 'assets/Thrust-1.png');
         this.load.image('blaster1', 'assets/blast-ball.png');
         this.load.image('asteroid', 'assets/asteroid.png');
-        this.load.image('logo', 'assets/logo.png')
+        this.load.image('logo', 'assets/logo-new.png')
 
         this.load.audio('inGameMusic', 'assets/InGameMusic.ogg');
         this.load.audio('blasterSound', 'assets/Blaster1.wav');
