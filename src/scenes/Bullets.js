@@ -58,4 +58,7 @@ class Bullets extends Phaser.Physics.Arcade.Group
     }
 }
 
-export default Bullets;
+export {
+    Bullets,
+    Bullet
+}

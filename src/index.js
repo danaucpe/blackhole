@@ -7,6 +7,7 @@ const WIDTH = 1080;
 const HEIGHT = 800;
 const RED_POSITION = { x: WIDTH * 0.1, y: HEIGHT / 2 }
 const BLUE_POSITION = { x: WIDTH * 0.9, y: HEIGHT / 2 }
+const GREEN_POSITION = { x: WIDTH * 0.5, y: HEIGHT * 0.9 }
 const BULLET_SPEED = 250;
 
 const SHARED_CONFIG = {
@@ -14,6 +15,7 @@ const SHARED_CONFIG = {
   height: HEIGHT,
   redStartPosition: RED_POSITION,
   blueStartPosition: BLUE_POSITION,
+  greenStartPosition: GREEN_POSITION,
   bulletSpeed: BULLET_SPEED
 }
 
