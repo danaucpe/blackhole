@@ -36,8 +36,8 @@ class PlayScene extends BaseScene {
 
         this.anims.create({
             key: 'explode',
-            frames: this.anims.generateFrameNumbers('green-ship', {start: 18, end: 26}),
-            frameRate: 10,
+            frames: this.anims.generateFrameNumbers('green-ship', {start: 38, end: 56}),
+            frameRate: 20,
             repeat: 0
         })
         

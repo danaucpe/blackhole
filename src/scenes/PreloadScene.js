@@ -14,7 +14,7 @@ class PreloadScene extends Phaser.Scene {
         this.load.image('blaster1', 'assets/blast-ball.png');
 
         // load spritsheet
-        this.load.spritesheet('green-ship', 'assets/blasteroid-green-sprite.png', {frameWidth: 72, frameHeight: 88})
+        this.load.spritesheet('green-ship', 'assets/12-26-shipsprite.png', {frameWidth: 72, frameHeight: 88})
 
         this.load.image('asteroid', 'assets/asteroid.png');
         this.load.image('logo', 'assets/logo-new.png')
